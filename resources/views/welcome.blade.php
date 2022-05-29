@@ -49,7 +49,7 @@
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
-                            <img style="width:100px;" src="images/html5.jpg" />
+                            <img src="images/html5.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">html 5</h2>
                             <p>Η HTML5 είναι η πέμπτη έκδοση της HTML, της κύριας γλώσσας σήμανσης για ιστοσελίδες και έγινε δημόσια διαθέσιμη για πρώτη φορά στις 22 Ιανουαρίου 2008 ...</p>
                             <div class="mt-2 sm:mt-2 sm:flex-none">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <img style="width:100px;" src="images/css.jpg" />
+                            <img src="images/css.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">CSS</h2>
                             <p>Η CSS (Cascading Style Sheets – διαδοχικά φύλλα ύφους ή επάλληλα φύλλα ύφους) είναι μια γλώσσα υπολογιστή που ανήκει στην κατηγορία των γλωσσών φύλλων ...</p>
                             <div class="mt-2 sm:mt-2 sm:flex-none">
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <img style="width:100px;" src="images/php.jpg" />
+                            <img src="images/php.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">PHP</h2>
                             <p>Η PHP (PHP: Hypertext Preprocessor) είναι μια γλώσσα προγραμματισμού για τη δημιουργία σελίδων web με δυναμικό περιεχόμενο. Μια σελίδα PHP περνά από επεξεργασία ...</p>
                             <div class="mt-2 sm:mt-2 sm:flex-none">
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <img style="width:100px;" src="images/js.jpg" />
+                            <img src="images/js.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">Javascript</h2>
                             <p>Η JavaScript (JS) είναι διερμηνευμένη γλώσσα προγραμματισμού για ηλεκτρονικούς υπολογιστές.[1] Αρχικά αποτέλεσε μέρος της υλοποίησης των φυλλομετρητών Ιστού ...</p>
                             <div class="mt-2 sm:mt-2 sm:flex-none">
@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <img style="width:100px;" src="images/mysql.jpg" />
+                            <img src="images/mysql.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">mySQL</h2>
                             <p>Η MySQL είναι ένα σύστημα διαχείρισης σχεσιακών βάσεων δεδομένων που μετρά περισσότερες από 11 εκατομμύρια εγκαταστάσεις. Έλαβε το όνομά της από την κόρη του Μόντυ Βιντένιους, τη Μάι (αγγλ. My). Το πρόγραμμα τρέχει έναν εξυπηρετητή (server) παρέχοντας πρόσβαση πολλών χρηστών σε ένα σύνολο βάσεων δεδομένων.</p>
                             <div class="mt-2 sm:mt-2 sm:flex-none">
