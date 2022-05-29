@@ -90,6 +90,7 @@
                         <h1 class="text-xl font-semibold text-red-500">Σε αναμονή έγκρισης</h1>
                         <p class="mt-2 text-sm text-gray-700">Δείτε παρακάτω τις ερωτήσεις που έχετε υποβάλει και βρίσκονται σε κατάσταση αναμονής έγκρισης</p>
                     </div>
+
                 </div>
                 <div class="mt-8 flex flex-col">
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
