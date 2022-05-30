@@ -39,8 +39,9 @@ require __DIR__.'/auth.php';
 
 Route::resource('questions', QuestionController::class, [
     'names' => [
-        'index' => 'questions',
+        'index' => 'questions.index',
         'create' => 'questions.create',
+        'store' => 'questions.store',
     ]
 ]);
 

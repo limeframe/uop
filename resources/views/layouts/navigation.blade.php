@@ -20,7 +20,7 @@
                         {{ __('ΤΑ ΤΕΣΤΣ ΜΟΥ') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('questions')" :active="request()->routeIs('questions')">
+                    <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions')">
                         {{ __('ΟΙ ΕΡΩΤΗΣΕΙΣ ΜΟΥ') }}
                     </x-nav-link>
 
