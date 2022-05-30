@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form method="POST" action="{{ route('questions.update',1) }}">
+                    <form method="POST" action="{{ route('submitTest') }}">
                         @csrf
                         @method('POST')
 
@@ -19,30 +19,33 @@
 
                             <div class="grid grid-cols-1 divide-x divide-blue-500">
                                 @if($que->type == "complete")
-                                    <div id="apantisi-{{$que->id}}">
+                                    <div>
+
                                         <x-label class="py-2 mt-4 font-bold text-blue-600" for="type">
 
                                             <span class="text-red-400">ΕΡΩΤΗΣΗ {{ $afxon }}: </span>
 
                                             {{ $que->title }}</x-label>
 
-                                        <x-input name="title" id="title" type="text" value=""/>
+                                        <x-input name="apantisi-{{ $que->id }}" id="title" type="text"/>
                                     </div>
 
                                 @elseif($que->type == "truefalse")
-                                    <div id="apantisi-{{$que->id}}">
+                                    <div>
+
                                         <x-label class="py-2 mt-4 font-bold text-blue-600" for="type">
 
                                             <span class="text-red-400">ΕΡΩΤΗΣΗ {{ $afxon }}: </span>
 
                                             {{ $que->title }}</x-label>
 
-                                        <x-radio name="tier" id="tier_1" value="1" label="Σωστό"/>
-                                        <x-radio name="tier" id="tier_2" value="0" label="Λάθος"/>
+                                        <x-radio name="apantisi-{{$que->id}}" value="ok" label="Σωστό"/>
+                                        <x-radio name="apantisi-{{$que->id}}" value="notok" label="Λάθος"/>
                                     </div>
 
                                 @elseif($que->type == "multiplechoice")
-                                    <div id="apantisi-{{$que->id}}">
+                                    <div>
+
                                         <x-label class="py-2 mt-4 font-bold text-blue-600" for="type">
 
                                             <span class="text-red-400">ΕΡΩΤΗΣΗ {{ $afxon }}: </span>

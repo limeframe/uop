@@ -24,7 +24,7 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class=" fixed top-0 right-0 px-6 py-4 sm:block lg:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         <div class="p-6">
                             <img src="images/html5.jpg" />
                             <h2 class="font-bold text-lg m-2 ml-0">html 5</h2>

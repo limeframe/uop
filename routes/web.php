@@ -35,7 +35,25 @@ require __DIR__.'/auth.php';
 
 
 
-Route::resource('questions', QuestionController::class);
-Route::resource('tests', TestController::class);
+//Route::resource('questions', QuestionController::class);
+
+Route::resource('questions', QuestionController::class, [
+    'names' => [
+        'index' => 'questions',
+        'create' => 'questions.create',
+    ]
+]);
+
+Route::resource('tests', TestController::class, [
+    'names' => [
+        'index' => 'tests.index',
+    ]
+]);
+
+
+//Route::resource('tests', TestController::class);
 //Route::get('/tests/randomTest', TestController::class, '__randomTest');
+
 Route::post('/open', [TestController::class, 'randomTest'])->name('newTest');
+Route::post('/submitTest', [TestController::class, 'submitTest'])->name('submitTest');
+//Route::get('/tests/view', [TestController::class, 'show'])->name('submitTest');
