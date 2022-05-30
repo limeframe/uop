@@ -32,7 +32,7 @@ return new class extends Migration
             $table->text('apot_4')->nullable();
             $table->text('apot_5')->nullable();
             $table->string('pososto')->nullable();
-            $table->string('apotelesma')->nullable();
+            $table->string('apotelesma')->nullable()->default(0);
             $table->timestamps();
         });
     }
