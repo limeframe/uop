@@ -10,8 +10,9 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $approvedQuestions = Question::where("approval",1)->get();
-        $pendingQuestions = Question::where("approval",0)->get();
+
+        $approvedQuestions = Question::where("approval",1)->where('creator',Auth::id())->get();
+        $pendingQuestions = Question::where("approval",0)->where('creator',Auth::id())->get();
         return view('questions.index',compact('approvedQuestions','pendingQuestions'));
     }
 
