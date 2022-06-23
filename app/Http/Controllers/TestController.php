@@ -177,6 +177,7 @@ class TestController extends Controller
         $tst->apot_5        = $result_5;
         $tst->pososto       = $fResult;
         $tst->apotelesma        = $res;
+        $tst->level = $getErotisi_1->level;
 
         $tst->save();
 

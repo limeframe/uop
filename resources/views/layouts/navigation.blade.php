@@ -11,9 +11,9 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex text-sm">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('ΠΙΝΑΚΑΣ ΕΛΕΓΧΟΥ') }}
+                        {{ __('ΑΡΧΙΚΗ') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('tests.index')" :active="request()->routeIs('tests')">
@@ -27,6 +27,20 @@
                     <x-nav-link :href="route('questions.create')" :active="request()->routeIs('questions.create')">
                         {{ __('ΝΕΑ ΕΡΩΤΗΣΗ') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->role == 'administrator' || Auth::user()->role == 'moderator')
+
+                    <x-nav-link :href="route('questions.mng')" :active="request()->routeIs('questions.mng')">
+                       <span class="text-green-600"> {{ __('ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΣΕΩΝ') }} </span>
+                    </x-nav-link>
+
+                    @endif
+
+                    @if(Auth::user()->role == 'administrator')
+                    <x-nav-link :href="route('users.mng')" :active="request()->routeIs('users.mng')">
+                        <span class="text-red-600">{{ __('ΔΙΑΧΕΙΡΙΣΗ ΧΡΗΣΤΩΝ') }}</span>
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 

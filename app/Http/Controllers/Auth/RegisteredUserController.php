@@ -59,4 +59,53 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function mng()
+    {
+        $registeredUsers = User::where("role",'!=',null)->get();
+        return view('users.mng',compact('registeredUsers'));
+    }
+
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        //$editUser = User::where("id",2)->get();
+        return view('users.edit',compact('user'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'nickname' => 'required',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'nickname' => $request->nickname,
+            'dob' => $request->dob,
+            'role' => $request->role,
+        ]);
+
+
+        return redirect()->route('users.mng')
+                         ->withSuccess('Ο χρήστης ενημερώθηκε με επιτυχία');
+    }
+
+
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('users.mng')
+            ->withSuccess('Ο χρήστης διαγράφηκε με επιτυχία');
+    }
 }

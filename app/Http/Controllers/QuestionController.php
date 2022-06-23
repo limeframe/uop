@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $approvedQuestions = Question::where("approval",1)->get();
@@ -20,22 +15,25 @@ class QuestionController extends Controller
         return view('questions.index',compact('approvedQuestions','pendingQuestions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function mng()
+    {
+
+        $approvedQuestions = Question::where("approval",1)->get();
+        $pendingQuestions = Question::where("approval",0)->get();
+        return view('questions.mng',compact('approvedQuestions','pendingQuestions'));
+    }
+
+    public function loli()
+    {
+        return 'test';
+    }
+
     public function create()
     {
         return view('questions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $question = new Question;
@@ -68,50 +66,53 @@ class QuestionController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Question $question)
     {
         return view('questions.edit',compact('question'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
 
-        exit($request->approval);
+
+        $question = Question::find($id);
+/*
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'name' => 'required',
+            'lastname' => 'required',
+            'nickname' => 'required',
+        ]);
+*/
+        echo $request->approval .'<hr>';
+        if($request->approval == 'on') {
+            $approval = 1;
+        } else {
+            $approval = 0;
+        }
+
+        $question->update([
+            'title'             => $request->title,
+            'level'             => $request->level,
+            'type'              => $request->type,
+            'corrects'          => $request->corrects,
+            'wrongs'            => $request->wrongs,
+            'posanswers'        => $request->posanswers,
+            'approval'          => $approval,
+            'approvalModerator' => $request->approbalModerator,
+            'approvalDate'      => $request->approbalDate,
         ]);
 
-        $question->update($request->all());
 
-        return redirect()->route('questions.index')
-                         ->with('success','Η ερώτηση ενημερώθηκε με επιτυχία');
+        return redirect()->route('questions.mng')
+                         ->withSuccess('Η ερώτηση ενημερώθηκε με επιτυχία');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Question $question)
     {
         $question->delete();
 
-        return redirect()->route('questions.index')
-                         ->with('success','Η ερώτηση διαγράφηκε επιτυχώς');
+        return redirect()->route('questions.mng')
+            ->withSuccess('Η ερώτηση διαγράφηκε με επιτυχία');
     }
 }

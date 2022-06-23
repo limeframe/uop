@@ -34,11 +34,10 @@
                                     <tr>
                                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">ΚΩΔ.ΤΕΣΤ</th>
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ΗΜΕΡΟΜΗΝΙΑ</th>
+                                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ΕΠΙΠΕΔΟ ΔΥΣΚΟΛΙΑΣ</th>
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ΠΟΣΟΣΤΟ ΕΠΙΤΥΧΙΑΣ</th>
                                         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ΑΠΟΤΕΛΕΣΜΑ</th>
-                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                            <span class="sr-only">ΠΕΡΙΣΣΟΤΕΡΑ</span>
-                                        </th>
+
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 bg-white">
@@ -47,12 +46,11 @@
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">#{{ $mytst->id }}</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ date("d-m-Y", strtotime( $mytst->created_at )) }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $mytst->level }}</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $mytst->pososto }}%</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">@if($mytst->apotelesma == 'SUCCESS') <span class="text-green-600"> @else <span class="text-red-600">@endif{{ $mytst->apotelesma }}</span></td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
-                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="{{ route('tests.show',$mytst->id) }}" class="text-indigo-600 hover:text-indigo-900">ΠΕΡΙΣΣΟΤΕΡΑ</a>
-                                            </td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>

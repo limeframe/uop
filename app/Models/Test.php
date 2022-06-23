@@ -21,6 +21,7 @@ class Test extends Model
         'apantisi_3',
         'apantisi_4',
         'apantisi_5',
+        'level',
     ];
 
 }

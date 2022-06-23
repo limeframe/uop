@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 function checkResult($erotisiType,$erotisiCorrects,$apantisi){
 
     if($erotisiType == 'truefalse' || $erotisiType == 'complete') {

@@ -48,8 +48,10 @@
 
                         <div class="py-2">
                             <x-label class="py-2 text-green-600" for="corrects">Σωστή Απάντηση</x-label>
+                            <span class="text-sm">Σε περίπτωση true/false απάντησης γράψτε 1 για true και 0 για false</span>
                             <x-input name="corrects" id="corrects" type="text" />
                         </div>
+
 
                         <div id="hidediv1" style="display:none;" class="py-2">
                             <x-label class="py-2 text-blue-400 text-bold" for="posanswers">Πιθανές απαντήσεις</x-label>
