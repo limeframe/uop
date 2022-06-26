@@ -47,6 +47,9 @@ Route::get('questions/mng', 'App\Http\Controllers\QuestionController@mng')->name
 Route::get('users/mng', 'App\Http\Controllers\Auth\RegisteredUserController@mng')->name('users.mng')->middleware('auth');
 Route::get('users/edit/{id}', 'App\Http\Controllers\Auth\RegisteredUserController@edit')->name('users.edit')->middleware('auth');
 
+Route::get('editProfile', 'App\Http\Controllers\Auth\RegisteredUserController@editProfile')->name('auth.editProfile')->middleware('auth');
+Route::patch('updateProfile/',['as'=>'auth.updateProfile','uses'=>'App\Http\Controllers\Auth\RegisteredUserController@updateProfile'])->middleware('auth');
+
 Route::patch('users/{id}',['as'=>'users.update','uses'=>'App\Http\Controllers\Auth\RegisteredUserController@update'])->middleware('auth');
 
 Route::resource('questions', QuestionController::class, [

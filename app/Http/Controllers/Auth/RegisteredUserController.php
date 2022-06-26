@@ -33,6 +33,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
+        //exit($request->picture);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -40,8 +42,15 @@ class RegisteredUserController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'nickname' => ['required', 'string', 'max:255'],
             'dob' => ['required'],
+            'picture' => ['file', 'mimes:jpg,png,gif', 'max:3072'],
 
         ]);
+
+        $path=null;
+        if($request->hasFile('picture')) {
+            $path = $request->file('picture')->storePublicly('pictures');
+        }
+
 
         //exit( $request->name . ' - '.  $request->lastname);
         $user = User::create([
@@ -51,6 +60,7 @@ class RegisteredUserController extends Controller
             'dob' => $request->dob,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'picture' => $path,
         ]);
 
         event(new Registered($user));
@@ -100,12 +110,41 @@ class RegisteredUserController extends Controller
     }
 
 
-
     public function destroy(User $user)
     {
         $user->delete();
 
         return redirect()->route('users.mng')
             ->withSuccess('Ο χρήστης διαγράφηκε με επιτυχία');
+    }
+
+    public function editProfile()
+    {
+        $user = auth()->user();
+        //$editUser = User::where("id",2)->get();
+        return view('auth.editProfile',compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+
+        $user = auth()->user();
+
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'dob' => $request->dob,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+        return redirect()->route('auth.editProfile')
+                         ->withSuccess('Το προφίλ σας ενημερώθηκε με επιτυχία');
     }
 }

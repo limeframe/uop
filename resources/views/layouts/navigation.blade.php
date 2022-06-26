@@ -16,18 +16,6 @@
                         {{ __('ΑΡΧΙΚΗ') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('tests.index')" :active="request()->routeIs('tests')">
-                        {{ __('ΤΑ ΤΕΣΤΣ ΜΟΥ') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions')">
-                        {{ __('ΟΙ ΕΡΩΤΗΣΕΙΣ ΜΟΥ') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('questions.create')" :active="request()->routeIs('questions.create')">
-                        {{ __('ΝΕΑ ΕΡΩΤΗΣΗ') }}
-                    </x-nav-link>
-
                     @if(Auth::user()->role == 'administrator' || Auth::user()->role == 'moderator')
 
                     <x-nav-link :href="route('questions.mng')" :active="request()->routeIs('questions.mng')">
@@ -49,7 +37,12 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="flex align-content-center">
+                                @if(Auth::user()->picture)
+                                    <img src="{{ asset(Auth::user()->picture) }}" class="w-8 h-8 rounded-full object-cover mr-2">
+                                @endif
+                                {{ Auth::user()->nickname }}
+                            </div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -60,6 +53,10 @@
                     </x-slot>
 
                     <x-slot name="content">
+
+                        <x-dropdown-link :href="route('auth.editProfile')">
+                            {{ __('Επεξεργασία Προφίλ') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -67,10 +64,12 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Αποσύνδεση') }}
                             </x-dropdown-link>
                         </form>
+
                     </x-slot>
+
                 </x-dropdown>
             </div>
 
@@ -90,13 +89,30 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('ΑΡΧΙΚΗ') }}
             </x-responsive-nav-link>
+
+            @if(Auth::user()->role == 'administrator' || Auth::user()->role == 'moderator')
+
+                <x-responsive-nav-link :href="route('questions.mng')" :active="request()->routeIs('questions.mng')">
+                    <span class="text-green-600"> {{ __('ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΣΕΩΝ') }} </span>
+                </x-responsive-nav-link>
+
+            @endif
+
+            @if(Auth::user()->role == 'administrator')
+                <x-responsive-nav-link :href="route('users.mng')" :active="request()->routeIs('users.mng')">
+                    <span class="text-red-600">{{ __('ΔΙΑΧΕΙΡΙΣΗ ΧΡΗΣΤΩΝ') }}</span>
+                </x-responsive-nav-link>
+                @endif
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                @if(Auth::user()->picture)
+                    <img src="{{ asset(Auth::user()->picture) }}" class="w-8 h-8 rounded-full object-cover mr-2">
+                @endif
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
