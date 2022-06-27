@@ -96,7 +96,12 @@ class TestController extends Controller
 
     public function submitTest(Request $request)
     {
+
         $data = $request->all();
+
+
+
+
 
         $array = array();
 
@@ -125,18 +130,18 @@ class TestController extends Controller
         $getErotisi_3 = Question::where('id',$erotisi[3])->first();
         $getErotisi_4 = Question::where('id',$erotisi[4])->first();
         $getErotisi_5 = Question::where('id',$erotisi[5])->first();
-        echo $apantisi[3];
+
         if($apantisi[1] == 'ok') { $apantisi[1] = 1; } elseif($apantisi[1] == 'notok') { $apantisi[1] = 0; } else ( $apantisi[1] == $apantisi[1] );
         if($apantisi[2] == 'ok') { $apantisi[2] = 1; } elseif($apantisi[2] == 'notok') { $apantisi[2] = 0; } else ( $apantisi[2] == $apantisi[2] );
         if($apantisi[3] == 'ok') { $apantisi[3] = 1; } elseif($apantisi[3] == 'notok') { $apantisi[3] = 0; } else ( $apantisi[3] == $apantisi[3] );
         if($apantisi[4] == 'ok') { $apantisi[4] = 1; } elseif($apantisi[4] == 'notok') { $apantisi[4] = 0; } else ( $apantisi[4] == $apantisi[4] );
         if($apantisi[5] == 'ok') { $apantisi[5] = 1; } elseif($apantisi[5] == 'notok') { $apantisi[5] = 0; } else ( $apantisi[5] == $apantisi[5] );
 
-        $result_1 = checkResult($getErotisi_1->type,$getErotisi_1->corrects,$apantisi[1]);
-        $result_2 = checkResult($getErotisi_2->type,$getErotisi_2->corrects,$apantisi[2]);
-        $result_3 = checkResult($getErotisi_3->type,$getErotisi_3->corrects,$apantisi[3]);
-        $result_4 = checkResult($getErotisi_4->type,$getErotisi_4->corrects,$apantisi[4]);
-        $result_5 = checkResult($getErotisi_5->type,$getErotisi_5->corrects,$apantisi[5]);
+        $result_1 = checkResult($getErotisi_1->type,$getErotisi_1->corrects,$apantisi[1],$getErotisi_1->wrongs);
+        $result_2 = checkResult($getErotisi_2->type,$getErotisi_2->corrects,$apantisi[2],$getErotisi_2->wrongs);
+        $result_3 = checkResult($getErotisi_3->type,$getErotisi_3->corrects,$apantisi[3],$getErotisi_3->wrongs);
+        $result_4 = checkResult($getErotisi_4->type,$getErotisi_4->corrects,$apantisi[4],$getErotisi_4->wrongs);
+        $result_5 = checkResult($getErotisi_5->type,$getErotisi_5->corrects,$apantisi[5],$getErotisi_5->wrongs);
 
         $fResult = ($result_1 + $result_2 + $result_3 + $result_4 + $result_5) / 5;
         if ($fResult >= 60) {
@@ -158,6 +163,8 @@ class TestController extends Controller
 
         */
 
+
+        
         $tst = new Test;
         $tst->user_id       = Auth::id();
         $tst->erotisi_1     = $erotisi[1];
@@ -165,11 +172,11 @@ class TestController extends Controller
         $tst->erotisi_3     = $erotisi[3];
         $tst->erotisi_4     = $erotisi[4];
         $tst->erotisi_5     = $erotisi[5];
-        $tst->apantisi_1    = $apantisi[1];
-        $tst->apantisi_2    = $apantisi[2];
-        $tst->apantisi_3    = $apantisi[3];
-        $tst->apantisi_4    = $apantisi[4];
-        $tst->apantisi_5    = $apantisi[5];
+        if(is_array($apantisi[1])) { $tst->apantisi_1 = implode( ',', $apantisi[1] ); } else { $tst->apantisi_1    = $apantisi[1]; }
+        if(is_array($apantisi[2])) { $tst->apantisi_2 = implode( ',', $apantisi[2] ); } else { $tst->apantisi_2    = $apantisi[2]; }
+        if(is_array($apantisi[3])) { $tst->apantisi_3 = implode( ',', $apantisi[3] ); } else { $tst->apantisi_3    = $apantisi[3]; }
+        if(is_array($apantisi[4])) { $tst->apantisi_4 = implode( ',', $apantisi[4] ); } else { $tst->apantisi_4    = $apantisi[4]; }
+        if(is_array($apantisi[5])) { $tst->apantisi_5 = implode( ',', $apantisi[5] ); } else { $tst->apantisi_5    = $apantisi[5]; }
         $tst->apot_1        = $result_1;
         $tst->apot_2        = $result_2;
         $tst->apot_3        = $result_3;

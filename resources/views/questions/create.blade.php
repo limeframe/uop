@@ -22,6 +22,7 @@
                                 <option value="truefalse">Σωστό/Λάθος</option>
                                 <option value="complete">Συμπλήρωσης Κενού</option>
                                 <option value="multiplechoice">Πολλαπλής Επιλογής</option>
+                                <option value="singlechoice">Επιλογής</option>
                             </x-select>
 
                         </div>
@@ -46,7 +47,7 @@
                         <!-- Αν είναι Συμπλήρωσης κενού μην κάνεις τίποτα παραπάνω-->
                         <!-- Αν είναι Πολλαπλών απαντήσεων ή Επιλογής όρισε τις πιθανές απαντήσεις-->
 
-                        <div class="py-2">
+                        <div id="hidediv0" class="py-2">
                             <x-label class="py-2 text-green-600" for="corrects">Σωστή Απάντηση</x-label>
                             <span class="text-sm">Σε περίπτωση true/false απάντησης γράψτε 1 για true και 0 για false</span>
                             <x-input name="corrects" id="corrects" type="text" />
@@ -86,19 +87,29 @@
         {
             case "truefalse":
             {
+                document.getElementById('hidediv0').style.display = "inline";
                 document.getElementById('hidediv1').style.display = "none";
                 document.getElementById('hidediv2').style.display = "none";
                 break;
             }
             case "multiplechoice":
             {
+                document.getElementById('hidediv0').style.display = "none";
                 document.getElementById('hidediv1').style.display = "inline";
                 document.getElementById('hidediv2').style.display = "inline";
                 break;
             }
             case "complete":
             {
+                document.getElementById('hidediv0').style.display = "inline";
                 document.getElementById('hidediv1').style.display = "none";
+                document.getElementById('hidediv2').style.display = "none";
+                break;
+            }
+            case "singlechoice":
+            {
+                document.getElementById('hidediv0').style.display = "inline";
+                document.getElementById('hidediv1').style.display = "inline";
                 document.getElementById('hidediv2').style.display = "none";
                 break;
             }

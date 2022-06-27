@@ -17,6 +17,7 @@
                         <?php $afxon = 1; ?>
                         @foreach($getRandomQuestions as $que)
 
+
                             <div class="grid grid-cols-1 divide-x divide-blue-500">
                                 @if($que->type == "complete")
                                     <div>
@@ -51,9 +52,34 @@
                                             <span class="text-red-400">ΕΡΩΤΗΣΗ {{ $afxon }}: </span>
 
                                             {{ $que->title }}</x-label>
+
+                                        @foreach(explode(',', $que->posanswers) as $pan)
+                                            <div class="flex items-center mb-4">
+                                                <input type="checkbox" name="apantisi-{{$que->id}}[]" value="{{$pan}}" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$pan}}</label>
+                                            </div>
+                                        @endforeach
+
+
+                                    </div>
+
+                                @elseif($que->type == "singlechoice")
+                                    <div>
+                                        <label for="" class="block mb-2 py-2 mt-4 font-bold text-blue-600"><span class="text-red-400">ΕΡΩΤΗΣΗ {{ $afxon }}: </span> {{ $que->title }}</label>
+                                        <select name="apantisi-{{$que->id}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option selected>Επιλέξτε την σωστή απάντηση</option>
+                                            <!-- get posanswers -->
+
+                                            @foreach(explode(',', $que->posanswers) as $pan)
+                                                <option value="{{$pan}}">{{$pan}}</option>
+                                            @endforeach
+
+                                        </select>
+
                                     </div>
 
                                 @endif
+
                             </div>
                             <?php $afxon = $afxon + 1; ?>
                         @endforeach

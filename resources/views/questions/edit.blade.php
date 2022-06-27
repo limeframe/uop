@@ -35,19 +35,15 @@
                         </div>
 
 
-                        <!-- Αν είναι true/flase μην κάνεις τίποτα παραπάνω-->
-                        <!-- Αν είναι Συμπλήρωσης κενού μην κάνεις τίποτα παραπάνω-->
-                        <!-- Αν είναι Πολλαπλών απαντήσεων ή Επιλογής όρισε τις πιθανές απαντήσεις-->
-
-                        @if($question->type == "truefalse" || $question->type == "complete")
+                        @if($question->type == "truefalse" || $question->type == "complete" || $question->type == "singlechoice")
                         <div class="py-2">
                             <x-label class="py-2 text-green-600" for="corrects">Σωστή Απάντηση</x-label>
                             <span class="text-sm">Σε περίπτωση true/false απάντησης γράψτε 1 για true και 0 για false</span>
                             <x-input name="corrects" id="corrects" type="text" value="{{ $question->corrects }}"/>
                         </div>
                         @endif
-                    {{$question->type}}
-                        @if($question->type == "multiplechoice")
+
+                        @if($question->type == "multiplechoice" || $question->type == "singlechoice")
                         <div id="hidediv1" style="" class="py-2">
                             <x-label class="py-2 font-semibold text-green-600" for="posanswers">Πιθανές απαντήσεις</x-label>
                             <span class="text-sm">Παρακαλούμε διαχωρίστε τις πιθανές απαντήσεις με κόμα (,)</span>
